@@ -17,12 +17,28 @@ import java.io.PrintWriter;
  * Support for a default account still needs to be added.  There is meant to be only a single default account
  */
 public class AccountMan {
-    private static Gson gson;
-    public static void GetDefaultAccount(){}
+    private static Gson gson = new Gson();
+    public static AccountInfo GetDefaultAccount(){
+        Accounts a = Load();
+        for(AccountInfo i: a.accounts){
+            if(i.defaultAccount)
+                return i;
+        }
+        return null;
+    }
     public static void AddAccount(String username, String password, String server, String aPIKey, String sessionID, String sessionDate, Boolean defaultAccount){
         Accounts accounts = new Accounts();
         if(CheckForFile())
             accounts = Load();
+        //if an account is being set as default this will reset all other accounts and then a default account will be set later
+        if(defaultAccount){
+            for(AccountInfo i: accounts.accounts){
+                i.defaultAccount = false;
+            }
+        }
+        //incase there is only 1 account in the file this ensures that one account will be default
+        if(accounts.accounts.size() == 1)
+            defaultAccount = true;
         AccountInfo a = new AccountInfo(username, password, server, aPIKey, sessionID, sessionDate, defaultAccount);
         accounts.accounts.add(a);
         Save(accounts);
@@ -41,6 +57,12 @@ public class AccountMan {
     public static void ModifyAccount(String username, String password, String server, String aPIKey, String sessionID, String sessionDate, Boolean defaultAccount){
         AccountInfo a = new AccountInfo(username, password, server, aPIKey, sessionID, sessionDate, defaultAccount);
         Accounts accounts = Load();
+        //if an account is being set as default this will reset all other accounts and then a default account will be set later
+        if(defaultAccount){
+            for(AccountInfo i: accounts.accounts){
+                i.defaultAccount = false;
+            }
+        }
         for(AccountInfo i: accounts.accounts){
             if(i.userName.equals(username)&& i.server.equals(server) ){
                 accounts.accounts.remove(accounts.accounts.indexOf(i));
@@ -62,8 +84,6 @@ public class AccountMan {
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IOException e){
-
         }
     }
     public static Accounts Load(){
@@ -71,7 +91,7 @@ public class AccountMan {
         //if(!new File("accounts.jazz").isFile()) //if an account file doesn't exist one is created
         //    CreateAccount();
         //else{
-        BufferedReader br = null;
+        BufferedReader br;
         String i = "";
         try{
             br = new BufferedReader(new FileReader("acnt.jazz"));
@@ -92,10 +112,7 @@ public class AccountMan {
         return accounts;
     }
     private static boolean CheckForFile(){
-        if(new File("acnt.jazz").isFile())
-            return true;
-        else
-            return false;
+        return new File("acnt.jazz").isFile();
     }
 
 }
