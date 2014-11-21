@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.androidle.androidle" >
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.androidle.androidle.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.androidle.androidle.AddAccount"
+            android:label="@string/title_activity_add_account"
+            android:parentActivityName="com.androidle.androidle.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidle.androidle.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.androidle.androidle.SelectAccount"
+            android:label="@string/title_activity_select_account"
+            android:parentActivityName="com.androidle.androidle.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidle.androidle.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.androidle.androidle.MailPreviewList"
+            android:label="@string/title_activity_mail_preview_list"
+            android:parentActivityName="com.androidle.androidle.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidle.androidle.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>
