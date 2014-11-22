@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 
 
 public class AddAccount extends Activity {
@@ -21,6 +24,15 @@ public class AddAccount extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+    }
+
+    public void OnLoginClick(View v){
+        EditText username = (EditText)findViewById(R.id.username);
+        EditText password = (EditText)findViewById(R.id.password);
+        RadioGroup rg=(RadioGroup)findViewById(R.id.radioGroupServerSelection);
+        CheckBox dfAccount = (CheckBox)findViewById(R.id.checkBoxMakeDefault);
+        //String radiovalue=  (RadioButton)this.findViewById(rg.getCheckedRadioButtonId()).getId();
+
     }
 
 

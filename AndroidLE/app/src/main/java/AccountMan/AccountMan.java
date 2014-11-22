@@ -36,7 +36,7 @@ public class AccountMan {
                 i.defaultAccount = false;
             }
         }
-        //incase there is only 1 account in the file this ensures that one account will be default
+        //in case there is only 1 account in the file this ensures that one account will be default
         if(accounts.accounts.size() == 1)
             defaultAccount = true;
         AccountInfo a = new AccountInfo(username, password, server, aPIKey, sessionID, sessionDate, defaultAccount);
