@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.androidle.androidle" >
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +41,30 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.androidle.androidle.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.androidle.androidle.AccountSelection"
+            android:label="@string/title_activity_account_selection"
+            android:parentActivityName="com.androidle.androidle.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidle.androidle.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.androidle.androidle.MailList"
+            android:label="@string/title_activity_mail_list"
+            android:parentActivityName="com.androidle.androidle.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidle.androidle.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.androidle.androidle.IndividualMessageView"
+            android:label="@string/title_activity_individual_message_view"
+            android:parentActivityName="com.androidle.androidle.MailList" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidle.androidle.MailList" />
         </activity>
     </application>
 

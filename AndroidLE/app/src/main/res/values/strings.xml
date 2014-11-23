@@ -7,5 +7,8 @@
     <string name="title_activity_add_account">AddAccount</string>
     <string name="title_activity_select_account">SelectAccount</string>
     <string name="title_activity_mail_preview_list">MailPreviewList</string>
+    <string name="title_activity_account_selection">AccountSelection</string>
+    <string name="title_activity_mail_list">MailList</string>
+    <string name="title_activity_individual_message_view">IndividualMessageView</string>
 
 </resources>
