@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import JavaLEWrapper.Empire;
+import Server;
+import com.google.gson.Gson;
 
 
 public class AddAccount extends Activity {
@@ -27,10 +30,27 @@ public class AddAccount extends Activity {
     }
 
     public void OnLoginClick(View v){
-        EditText username = (EditText)findViewById(R.id.username);
-        EditText password = (EditText)findViewById(R.id.password);
+        EditText etusername = (EditText)findViewById(R.id.username);
+        String username = etusername.getText();
+        EditText etpassword = (EditText)findViewById(R.id.password);
+        String password = etpassword.getText();
         RadioGroup rg=(RadioGroup)findViewById(R.id.radioGroupServerSelection);
-        CheckBox dfAccount = (CheckBox)findViewById(R.id.checkBoxMakeDefault);
+        CheckBox cbdfAccount = (CheckBox)findViewById(R.id.checkBoxMakeDefault);
+        String server;
+        int serverid = rg.getCheckedRadioButtonId();
+        switch (serverID) {
+        	case -1: server = null;
+        		break;
+        	case 0: server = "https://us1.lacunaexpanse.com";
+        		break;
+        	case 1: server = "https://pt.lacunaexpanse.com";
+        		break;
+        }
+        
+        String request = static JavaLEWrapper.Empire.Login(username, password, 1);
+        Server.ServerRequest sRequest = new Sever.ServerRequest(server, Empire.url, request);
+        String reply = new Server.Server().execute(sRequest);
+        
         //dfAccount.
         //String radiovalue=  (RadioButton)this.findViewById(rg.getCheckedRadioButtonId()).getId();
 
