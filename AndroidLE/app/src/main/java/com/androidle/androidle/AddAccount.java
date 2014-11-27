@@ -31,7 +31,10 @@ public class AddAccount extends Activity {
         EditText password = (EditText)findViewById(R.id.password);
         RadioGroup rg=(RadioGroup)findViewById(R.id.radioGroupServerSelection);
         CheckBox dfAccount = (CheckBox)findViewById(R.id.checkBoxMakeDefault);
+        //dfAccount.
         //String radiovalue=  (RadioButton)this.findViewById(rg.getCheckedRadioButtonId()).getId();
+
+        //AccountMan.AccountMan.AddAccount(username.getText(), password.getText());
 
     }
 
