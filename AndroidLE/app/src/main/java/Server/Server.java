@@ -6,7 +6,11 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class Server {
+public class Server extends AsyncTask<ServerRequest, void, String>{
+	protected String DoInBackground(ServerRequest a){
+		return ServerRequest(a.server, a.methodURL, a.json)
+	}
+	
     public String ServerRequest(String gameServer, String methodURL, String JsonRequest) {
         String output = "";
         try {
@@ -58,4 +62,12 @@ public class Server {
 
         }
     }*/
+}
+class ServerRequest{
+	String server, methodURL, json;
+	ServerRequest(String server, String methodURL, String json){
+		this.server = server;
+		this.methodURL = method.URL;
+		this.json = json;
+	}
 }
