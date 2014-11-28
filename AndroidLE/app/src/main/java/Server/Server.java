@@ -1,14 +1,16 @@
 package Server;
 
+import android.os.AsyncTask;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class Server extends AsyncTask<ServerRequest, void, String>{
-	protected String DoInBackground(ServerRequest a){
-		return ServerRequest(a.server, a.methodURL, a.json)
+public class Server extends AsyncTask<ServerRequest, Void, String> {
+	protected String doInBackground(ServerRequest... a){
+		return ServerRequest(a[0].server, a[0].methodURL, a[0].json);
 	}
 	
     public String ServerRequest(String gameServer, String methodURL, String JsonRequest) {
@@ -67,7 +69,7 @@ class ServerRequest{
 	String server, methodURL, json;
 	ServerRequest(String server, String methodURL, String json){
 		this.server = server;
-		this.methodURL = method.URL;
+		this.methodURL = methodURL;
 		this.json = json;
 	}
 }
