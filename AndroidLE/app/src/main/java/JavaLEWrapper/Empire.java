@@ -11,9 +11,9 @@ import java.io.IOException;
 //package JavaLEWrapper;
 
 public class Empire extends LESuperClass{
-    String url = "empire";
+    static final public String url = "empire";
     private Gson gson = new Gson();
-    String Login(String Username, String Password, int requestID ){
+    public String Login(String Username, String Password, int requestID ){
         LoginObject login = new LoginObject(requestID, Username, Password);
         return gson.toJson(login);
     }

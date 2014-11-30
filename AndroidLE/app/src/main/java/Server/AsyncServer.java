@@ -7,11 +7,25 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Server extends AsyncTask<ServerRequest, Void, String> {
+public class AsyncServer extends AsyncTask<ServerRequest, Void, String> {
+    List<serverFinishedListener> listeners = new ArrayList<serverFinishedListener>();
+    public void addListener(serverFinishedListener toAdd){
+        listeners.add(toAdd);
+    }
 	protected String doInBackground(ServerRequest... a){
 		return ServerRequest(a[0].server, a[0].methodURL, a[0].json);
 	}
+    private void ResponseRecieved(String reply){
+        for(serverFinishedListener i: listeners){
+            i.onResponseRecieved(reply);
+        }
+    }
+    protected void onPostExecute(){
+
+    }
 	
     public String ServerRequest(String gameServer, String methodURL, String JsonRequest) {
         String output = "";
@@ -64,12 +78,4 @@ public class Server extends AsyncTask<ServerRequest, Void, String> {
 
         }
     }*/
-}
-class ServerRequest{
-	String server, methodURL, json;
-	ServerRequest(String server, String methodURL, String json){
-		this.server = server;
-		this.methodURL = methodURL;
-		this.json = json;
-	}
 }

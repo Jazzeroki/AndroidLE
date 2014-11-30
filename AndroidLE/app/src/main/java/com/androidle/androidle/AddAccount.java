@@ -2,6 +2,7 @@ package com.androidle.androidle;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,12 +12,24 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
 import JavaLEWrapper.Empire;
-import Server;
-import com.google.gson.Gson;
+import Server.AsyncServer;
+import Server.ServerRequest;
+import Server.serverFinishedListener;
 
 
-public class AddAccount extends Activity {
+public class AddAccount extends Activity implements serverFinishedListener {
+    @Override
+    public void onResponseRecieved(String reply) {
+        Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +44,14 @@ public class AddAccount extends Activity {
 
     public void OnLoginClick(View v){
         EditText etusername = (EditText)findViewById(R.id.username);
-        String username = etusername.getText();
+        String username = etusername.getText().toString();
         EditText etpassword = (EditText)findViewById(R.id.password);
-        String password = etpassword.getText();
+        String password = etpassword.getText().toString();
         RadioGroup rg=(RadioGroup)findViewById(R.id.radioGroupServerSelection);
         CheckBox cbdfAccount = (CheckBox)findViewById(R.id.checkBoxMakeDefault);
-        String server;
+        String server ="";
         int serverid = rg.getCheckedRadioButtonId();
-        switch (serverID) {
+        switch (serverid) {
         	case -1: server = null;
         		break;
         	case 0: server = "https://us1.lacunaexpanse.com";
@@ -46,10 +59,13 @@ public class AddAccount extends Activity {
         	case 1: server = "https://pt.lacunaexpanse.com";
         		break;
         }
-        
-        String request = static JavaLEWrapper.Empire.Login(username, password, 1);
-        Server.ServerRequest sRequest = new Sever.ServerRequest(server, Empire.url, request);
-        String reply = new Server.Server().execute(sRequest);
+        Empire e = new Empire();
+        String request = e.Login(username, password, 1);
+        ServerRequest sRequest = new ServerRequest(server, Empire.url, request);
+        AsyncServer s = new AsyncServer();
+        s.addListener(this);
+        s.execute();
+        //Server.Server s = new Server.Server().execute(sRequest);
         
         //dfAccount.
         //String radiovalue=  (RadioButton)this.findViewById(rg.getCheckedRadioButtonId()).getId();
