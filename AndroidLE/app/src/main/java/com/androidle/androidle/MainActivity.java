@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 public class MainActivity extends Activity {
 
     @Override
@@ -67,9 +66,16 @@ public class MainActivity extends Activity {
             //After creating the load file code need to setup if fill not found
             //start add account, otherwise if 1 account open account, if multiple accounts
             //open account selection
-            Intent intent = new Intent(getActivity(), AddAccount.class);
-            startActivity(intent);
-            return rootView;
+            if(AccountMan.AccountMan.CheckForFile()){
+                Intent intent = new Intent(getActivity(), select_Account.class);
+                startActivity(intent);
+                return rootView;
+            }
+            else {
+                Intent intent = new Intent(getActivity(), AddAccount.class);
+                startActivity(intent);
+                return rootView;
+            }
         }
     }
 }

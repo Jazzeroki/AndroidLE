@@ -10,5 +10,6 @@
     <string name="title_activity_account_selection">AccountSelection</string>
     <string name="title_activity_mail_list">MailList</string>
     <string name="title_activity_individual_message_view">IndividualMessageView</string>
+    <string name="title_activity_select__account">select_Account</string>
 
 </resources>

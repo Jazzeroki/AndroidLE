@@ -11,33 +11,6 @@ public class Inbox extends LESuperClass {
     String ViewInbox(String sessionID, String tag, int pageNumber ){
         return "{\"jsonrpc\":2,\"id\":1,\"method\":\"view_inbox\",\"params\":[\""+sessionID+"\",{\"tags\":[\""+tag+"\"],\"page_number\":"+pageNumber+"}]}";
     }
-    /*String ViewInbox(int RequestID, String sessionID, MessageTags tag ){
-        StartOfObject(RequestID, "view_inbox");
-        String i = "nothing";
-        try {
-            writer.value(sessionID);
-            //writer.beginArray();
-            //writer.beginObject();
-            //writer.value(tag.toString());
-            //writer.value("{\"Correspondence\"}");
-            //writer.endObject();
-            //writer.endArray();
-            writer.endArray();
-            writer.endObject();
-            writer.close();
-            i = gson.toJson(writer);
-            System.out.println(i);
-            i = CleanJsonObject(i);
-
-        } catch (IOException e) {
-            System.out.println("Exception in view Inbox");
-            // TODO Auto-generated catch block
-            i = "request build failed";
-            e.printStackTrace();
-        }
-        return i = "{\"jsonrpc\":2,\"id\":1,\"method\":\"view_inbox\",\"params\":[\""+sessionID+"\",{\"tags\":[\"Correspondence\"],\"page_number\":1}]}";
-        //return i;
-    } */
     String ReadMessage(int RequestID, String sessionID, String MessageID){
         StartOfObject(RequestID, "read_message");
         String i = "nothing";

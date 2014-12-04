@@ -66,6 +66,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.androidle.androidle.MailList" />
         </activity>
+        <activity
+            android:name="com.androidle.androidle.select_Account"
+            android:label="@string/title_activity_select__account"
+            android:parentActivityName="com.androidle.androidle.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidle.androidle.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

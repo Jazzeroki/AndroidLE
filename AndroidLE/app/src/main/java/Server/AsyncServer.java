@@ -22,6 +22,7 @@ public class AsyncServer extends AsyncTask<ServerRequest, Void, String> {
         for(serverFinishedListener i: listeners){
             i.onResponseRecieved(reply);
         }
+        listeners.clear();
     }
     protected void onPostExecute(){
 

@@ -7,7 +7,9 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="left|top">
+        android:layout_gravity="left|top"
+        android:weightSum="1"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,5 +77,18 @@
             android:text="Add Account"
             android:id="@+id/buttonAddAccount"
             android:onClick=""/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="ServerReply"
+            android:id="@+id/textView6" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextServerReply"
+            android:layout_weight="0.51" />
     </LinearLayout>
 </FrameLayout>
